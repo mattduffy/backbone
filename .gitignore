@@ -1,0 +1,11 @@
+# files to ignore
+.DS_Store
+*.swp
+*.swo
+
+node_modules/*
+*.zip
+npm-debug.log
+
+uploads/*
+
