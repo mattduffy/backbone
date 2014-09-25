@@ -37,8 +37,8 @@ app.AppView = Backbone.View.extend({
   //new
   //re-rendering the app just means refreshing the statistics; the rest of the app doesn't change.
   render: function() {
-    var completed = this.Todos.completed().length;
-	var remaining = this.Todos.remaining().length;
+    var completed = app.Todos.completed().length;
+	var remaining = app.Todos.remaining().length;
 	if (app.Todos.length) {
 	  this.$main.show();
 	  this.$footer.show();
@@ -87,7 +87,7 @@ app.AppView = Backbone.View.extend({
     return {
       title: this.$input.val().trim(),
 	  order: app.Todos.nextOrder(),
-	  completed: false
+	  completed: false 
 	};
   },
 
@@ -104,6 +104,7 @@ app.AppView = Backbone.View.extend({
   //new
   // Clear all completed todo items, destroying their models.
   clearCompleted: function() {
+	console.log('clearing completed items');
     _.invoke(app.Todos.completed(), 'destroy');
 	return false;
   },
@@ -112,6 +113,7 @@ app.AppView = Backbone.View.extend({
   toggleAllCompleted: function() {
     var completed = this.allCheckbox.checked;
 	app.Todos.each(function(todo) {
+	  console.log('completed item: %s', todo.title);
       todo.save({completed: completed}); 
 	});
   }
